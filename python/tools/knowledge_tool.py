@@ -17,11 +17,7 @@ class Knowledge(Tool):
             # Schedule the two functions to be run in parallel
 
             # perplexity search, if API provided
-            if os.getenv("API_KEY_PERPLEXITY"):
-                perplexity = executor.submit(perplexity_search.perplexity_search, question)
-            else: 
-                PrintStyle.hint("No API key provided for Perplexity. Skipping Perplexity search.")
-                perplexity = None
+            perplexity = executor.submit(perplexity_search.perplexity_search, question)
                 
 
             # duckduckgo search

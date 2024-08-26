@@ -33,7 +33,7 @@ class AgentConfig:
     code_exec_docker_ports: dict[str,int] = field(default_factory=lambda: {"22/tcp": 50022})
     code_exec_docker_volumes: dict[str, dict[str, str]] = field(default_factory=lambda: {files.get_abs_path("work_dir"): {"bind": "/root", "mode": "rw"}})
     code_exec_ssh_enabled: bool = True
-    code_exec_ssh_addr: str = "localhost"
+    code_exec_ssh_addr: str = "127.0.0.1"
     code_exec_ssh_port: int = 50022
     code_exec_ssh_user: str = "root"
     code_exec_ssh_pass: str = "toor"
