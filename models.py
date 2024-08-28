@@ -1,7 +1,6 @@
 import os
 from dotenv import load_dotenv
 from langchain_anthropic import ChatAnthropic
-from langchain_community.chat_models.llama_edge import LlamaEdgeChatService
 from langchain_community.embeddings import OllamaEmbeddings
 from langchain_community.llms.ollama import Ollama
 from langchain_google_genai import ChatGoogleGenerativeAI, HarmBlockThreshold, HarmCategory
@@ -52,8 +51,8 @@ def get_anthropic_chat(model_name: str, api_key=None, temperature=DEFAULT_TEMPER
 
 
 # GaiaNet models
-def get_gaia_chat(base_url="https://llama.us.gaianet.network/v1", model_name="llama"):
-    return ChatOpenAI(base_url=base_url, model=model_name, api_key="none")  # type: ignore
+def get_gaia_chat(base_url="https://llama.us.gaianet.network/v1", model_name="llama", api_key=None):
+    return ChatOpenAI(base_url=base_url, model=model_name, api_key=api_key)  # type: ignore
 
 
 # OpenAI models
@@ -67,8 +66,9 @@ def get_openai_instruct(model_name: str, api_key=None, temperature=DEFAULT_TEMPE
     return OpenAI(model=model_name, temperature=temperature, api_key=api_key)  # type: ignore
 
 
-def get_gaia_embedding(base_url="https://llama.us.gaianet.network/v1", model_name="nomic-embed"):
-    return OpenAIEmbeddings(base_url=base_url, model=model_name, api_key="none")  # type: ignore
+def get_gaia_embedding(base_url="https://llama.us.gaianet.network/v1", api_key=None, model_name="nomic-embed"):
+    return OpenAIEmbeddings(base_url=base_url, model=model_name, api_key=api_key)  # type: ignore
+
 
 def get_openai_embedding(model_name: str, api_key=None):
     api_key = api_key or get_api_key("openai")

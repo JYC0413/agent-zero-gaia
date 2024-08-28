@@ -1,4 +1,5 @@
 import threading, time, models, os
+from dotenv import load_dotenv
 from ansio import application_keypad, mouse_input, raw_input
 from ansio.input import InputEvent, get_input_event
 from agent import Agent, AgentConfig
@@ -11,12 +12,19 @@ import python.helpers.timed_input as timed_input
 input_lock = threading.Lock()
 os.chdir(files.get_abs_path("./work_dir")) #change CWD to work_dir
 
+load_dotenv()
 
 def initialize():
-    
+    chatUrl = os.getenv("CHAT_BASE_URL") or "https://llama.us.gaianet.network/v1"
+    chatModel = os.getenv("CHAT_MODEL_NAME") or "llama"
+    chatApiKey = os.getenv("CHAT_API_KEY") or "LLAMAEDGE"
+    embeddingUrl = os.getenv("EMBEDDING_BASE_URL") or "https://llama.us.gaianet.network/v1"
+    embeddingModel = os.getenv("EMBEDDING_MODEL_NAME") or "nomic-embed"
+    embeddingApiKey = os.getenv("CHAT_API_KEY") or "LLAMAEDGE"
+
     # main chat model used by agents (smarter, more accurate)
     # chat_llm = models.get_openai_chat(model_name="gpt-4o-mini", temperature=0)
-    chat_llm = models.get_gaia_chat(base_url="https://llama.us.gaianet.network/v1", model_name="llama")
+    chat_llm = models.get_gaia_chat(base_url=chatUrl,api_key=chatApiKey, model_name=chatModel)
     # chat_llm = models.get_ollama_chat(model_name="gemma2:latest", temperature=0)
     # chat_llm = models.get_lmstudio_chat(model_name="TheBloke/Mistral-7B-Instruct-v0.2-GGUF", temperature=0)
     # chat_llm = models.get_openrouter(model_name="meta-llama/llama-3-8b-instruct:free")
@@ -30,7 +38,7 @@ def initialize():
 
     # embedding model used for memory
     # embedding_llm = models.get_openai_embedding(model_name="text-embedding-3-small")
-    embedding_llm = models.get_gaia_embedding(base_url="https://llama.us.gaianet.network/v1", model_name="nomic-embed")
+    embedding_llm = models.get_gaia_embedding(base_url=embeddingUrl,api_key=embeddingApiKey, model_name=embeddingModel)
     # embedding_llm = models.get_ollama_embedding(model_name="nomic-embed-text")
     # embedding_llm = models.get_huggingface_embedding(model_name="sentence-transformers/all-MiniLM-L6-v2")
 
