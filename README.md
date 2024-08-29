@@ -38,6 +38,39 @@ This fork of the Agent Zero project integrates the Gaia node for model inference
             sudo systemctl start docker
             ```
 
+3. **Project Environment Variables Configuration Guide**:
+
+This project allows you to customize certain environment variables to connect your AI models and choose your preferred search engine. If you don't configure these variables, the program will run with default values.
+
+① Configuring Environment Variables
+
+First, you need to create a `.env` file in the root directory of the project. You can do this by copying the `example.env` file and renaming it to `.env`:
+
+#### For Linux or macOS:
+```bash
+cp example.env .env
+```
+#### For Windows (Command Prompt):
+```cmd
+copy example.env .env
+```
+#### For Windows (PowerShell):
+```powershell
+Copy-Item -Path example.env -Destination .env
+```
+② Editing the .env File 
+Open the .env file in your preferred text editor and fill in the following variables if you want to use your own models:
+`CHAT_MODEL_BASE_URL`
+`CHAT_MODEL_NAME`
+`CHAT_API_KEY`
+`EMBEDDING_MODEL_BASE_URL`
+`EMBEDDING_MODEL_NAME`
+`EMBEDDING_API_KEY`
+
+#### Optional Configuration for PERPLEXITY Search
+If you want to use PERPLEXITY search, add your API key by filling in the API_KEY_PERPLEXITY variable
+If this variable is not set, the program will default to using DuckDuckGo combined with the chat model you configured.
+
 3. **Run the Project**:
     ```bash
     python main.py
