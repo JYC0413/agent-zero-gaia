@@ -15,12 +15,12 @@ os.chdir(files.get_abs_path("./work_dir")) #change CWD to work_dir
 load_dotenv()
 
 def initialize():
-    chatUrl = os.getenv("CHAT_BASE_URL") or "https://llama.us.gaianet.network/v1"
+    chatUrl = os.getenv("CHAT_MODEL_BASE_URL") or "https://llama.us.gaianet.network/v1"
     chatModel = os.getenv("CHAT_MODEL_NAME") or "llama"
     chatApiKey = os.getenv("CHAT_API_KEY") or "LLAMAEDGE"
     embeddingUrl = os.getenv("EMBEDDING_BASE_URL") or "https://llama.us.gaianet.network/v1"
     embeddingModel = os.getenv("EMBEDDING_MODEL_NAME") or "nomic-embed"
-    embeddingApiKey = os.getenv("CHAT_API_KEY") or "LLAMAEDGE"
+    embeddingApiKey = os.getenv("EMBEDDING_API_KEY") or "LLAMAEDGE"
 
     # main chat model used by agents (smarter, more accurate)
     # chat_llm = models.get_openai_chat(model_name="gpt-4o-mini", temperature=0)
