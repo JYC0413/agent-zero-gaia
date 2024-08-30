@@ -18,7 +18,7 @@ def initialize():
     chatUrl = os.getenv("CHAT_MODEL_BASE_URL") or "https://llama.us.gaianet.network/v1"
     chatModel = os.getenv("CHAT_MODEL_NAME") or "llama"
     chatApiKey = os.getenv("CHAT_API_KEY") or "LLAMAEDGE"
-    embeddingUrl = os.getenv("EMBEDDING_BASE_URL") or "https://llama.us.gaianet.network/v1"
+    embeddingUrl = os.getenv("EMBEDDING_MODEL_BASE_URL") or "https://llama.us.gaianet.network/v1"
     embeddingModel = os.getenv("EMBEDDING_MODEL_NAME") or "nomic-embed"
     embeddingApiKey = os.getenv("EMBEDDING_API_KEY") or "LLAMAEDGE"
 
